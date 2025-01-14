@@ -1,0 +1,34 @@
+services:
+  employee_app:
+    build: 
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    container_name: employee_container
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /gcp/creds/application_default_credentials.json
+      PROJECT_ID: gcp-devops-436118
+      SECRET_ID: secret
+      DB_CONNECTION_NAME: cloud_sql_auth_proxy
+      DB_USER_NAME: postgres
+      DB_NAME: employeedb
+      DB_PORT: 5432
+    ports:
+      - '80:80'
+    volumes:
+      - $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds/application_default_credentials.json:ro
+    restart: "no"
+    depends_on:
+      - cloud_sql_auth_proxy
+
+  cloud_sql_auth_proxy:
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /gcp/creds/application_default_credentials.json
+    ports:
+      - '5432:5432'
+    volumes:
+      - $HOME/.config/gcloud/application_default_credentials.json:/gcp/creds/application_default_credentials.json:ro
+
+    
