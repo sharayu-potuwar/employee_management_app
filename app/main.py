@@ -11,7 +11,7 @@ router = APIRouter()
 class Employeedetails(BaseModel):
     emp_id: str
     emp_name: str
-    emp_designation: str
+    emp_designation: str 
 
 
 @app.get("/")
