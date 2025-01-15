@@ -19,3 +19,6 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
            'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/cloudsqlauth']
+
+options:
+  logging: CLOUD_LOGGING_ONLY
