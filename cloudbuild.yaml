@@ -2,8 +2,7 @@ steps:
   # Docker Build app
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/empapp', '.']
-    dir: 'docker/web'
+           'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/empapp', '-f', 'Dockerfile.web', '.']
 
   # Docker Push app img
   - name: 'gcr.io/cloud-builders/docker'
@@ -13,8 +12,7 @@ steps:
     # Docker Build db
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/cloudsqlauth', '.']
-    dir: 'docker/db'
+           'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/cloudsqlauth', '-f', 'Dockerfile.db' '.']
           
   # Docker Push db img
   - name: 'gcr.io/cloud-builders/docker'
