@@ -1,23 +1,19 @@
 steps:
   # Docker Build app
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 
-           'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/empapp', '-f', 'Dockerfile.web', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/empapp', '-f', 'Dockerfile.web', '.']
 
   # Docker Push app img
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 
-           'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/empapp']
+    args: ['push', 'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/empapp']
   
     # Docker Build db
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 
-           'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/cloudsqlauth', '-f', 'Dockerfile.db' '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/cloudsqlauth', '-f', 'Dockerfile.db', '.']
           
   # Docker Push db img
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 
-           'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/cloudsqlauth']
+    args: ['push', 'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/cloudsqlauth']
 
 options:
   logging: CLOUD_LOGGING_ONLY
