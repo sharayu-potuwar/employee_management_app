@@ -15,5 +15,13 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/gcp-devops-436118/employee-repository/cloudsqlauth']
 
+  # deploy container image to GKE
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+      - run
+      - --filename=k8s-deployment.yaml
+      - --location=us-central1
+      - --cluster=my-gke-cluster
+
 options:
   logging: CLOUD_LOGGING_ONLY
